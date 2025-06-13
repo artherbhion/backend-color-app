@@ -17,7 +17,9 @@ app.add_middleware(
 )
 
 model = joblib.load("models/color_quality_model.pkl")
-
+@app.get("/")
+def read_root():
+    return {"message": "Color API is running 🚀"}
 @app.post("/analyze")
 async def analyze_color(
     reference_r: int = Form(...),
