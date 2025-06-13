@@ -12,12 +12,17 @@ def calculate_average_deltaE(reference_rgb, image_rgb):
     height, width, _ = image_rgb.shape
     delta_e_list = []
     reference_lab = rgb_to_lab(reference_rgb)
+
     for y in range(0, height, 10):
         for x in range(0, width, 10):
             lab2 = rgb_to_lab(image_rgb[y, x])
             delta_e = delta_e_cie2000(reference_lab, lab2)
+            # ✅ ensure it's a scalar float
+            if isinstance(delta_e, np.ndarray):
+                delta_e = delta_e.item()
             delta_e_list.append(delta_e)
-    return float(np.mean(delta_e_list))  # ✅ important fix
+
+    return float(np.mean(delta_e_list))
 
 def calculate_avg_hsb(image):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
