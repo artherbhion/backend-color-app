@@ -7,10 +7,14 @@ import joblib
 from color_utils import calculate_average_deltaE, calculate_avg_hsb
 
 app = FastAPI()
-
+origins = [
+    "http://localhost:3000",  # for local testing
+    "https://my-color-analyzer-frontend.vercel.app",  # your deployed frontend domain
+    "https://backend-color-app-production.up.railway.app"  # optional, backend itself
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
