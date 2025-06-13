@@ -9,7 +9,7 @@ from color_utils import calculate_average_deltaE, calculate_avg_hsb
 app = FastAPI()
 origins = [
     "http://localhost:3000",  # for local testing
-    "https://my-color-analyzer-frontend.vercel.app",  # your deployed frontend domain
+    "https://comingsoon-15.web.app/",  # your deployed frontend domain
     "https://backend-color-app-production.up.railway.app"  # optional, backend itself
 ]
 app.add_middleware(
