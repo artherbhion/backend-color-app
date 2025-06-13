@@ -17,7 +17,7 @@ def calculate_average_deltaE(reference_rgb, image_rgb):
             lab2 = rgb_to_lab(image_rgb[y, x])
             delta_e = delta_e_cie2000(reference_lab, lab2)
             delta_e_list.append(delta_e)
-    return np.mean(delta_e_list)
+    return float(np.mean(delta_e_list))  # ✅ important fix
 
 def calculate_avg_hsb(image):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
